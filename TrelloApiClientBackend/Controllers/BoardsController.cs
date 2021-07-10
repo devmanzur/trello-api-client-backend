@@ -1,8 +1,9 @@
 using System.Threading.Tasks;
 using CSharpFunctionalExtensions;
 using Microsoft.AspNetCore.Mvc;
-using TrelloApiClientBackend.Brokers;
-using TrelloApiClientBackend.Brokers.Reesponses;
+using TrelloApiClientBackend.Brokers.Trello;
+using TrelloApiClientBackend.Brokers.Trello.Reesponses;
+using TrelloApiClientBackend.Brokers.Trello.Routes;
 
 namespace TrelloApiClientBackend.Controllers
 {
@@ -14,11 +15,12 @@ namespace TrelloApiClientBackend.Controllers
         {
             _trelloApiBroker = trelloApiBroker;
         }
-        
+
         [HttpGet("{boardId}")]
         public async Task<ActionResult<Result<TrelloBoardResponseExternal>>> GetBoard(string boardId)
         {
-            var getBoard = await _trelloApiBroker.Get<TrelloBoardResponseExternal>("");
+            var getBoard =
+                await _trelloApiBroker.Get<TrelloBoardResponseExternal>(TrelloApiRoutes.Boards.Board(boardId));
             if (getBoard.IsSuccess)
             {
                 return Ok(getBoard.Value);

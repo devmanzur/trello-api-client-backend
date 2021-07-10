@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using CSharpFunctionalExtensions;
 
-namespace TrelloApiClientBackend.Brokers
+namespace TrelloApiClientBackend.Brokers.Trello
 {
     public interface ITrelloApiBroker
     {

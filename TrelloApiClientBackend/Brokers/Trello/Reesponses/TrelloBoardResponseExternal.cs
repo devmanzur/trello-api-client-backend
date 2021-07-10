@@ -1,4 +1,4 @@
-namespace TrelloApiClientBackend.Brokers.Reesponses
+namespace TrelloApiClientBackend.Brokers.Trello.Reesponses
 {
     public class TrelloBoardResponseExternal
     {
