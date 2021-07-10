@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using CSharpFunctionalExtensions;
 using Microsoft.AspNetCore.Mvc;
 using TrelloApiClientBackend.Brokers.Trello;
-using TrelloApiClientBackend.Brokers.Trello.Reesponses;
+using TrelloApiClientBackend.Brokers.Trello.Responses;
 using TrelloApiClientBackend.Brokers.Trello.Routes;
 
 namespace TrelloApiClientBackend.Controllers
