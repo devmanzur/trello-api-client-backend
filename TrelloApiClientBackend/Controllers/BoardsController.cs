@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using TrelloApiClientBackend.Brokers.Trello;
 using TrelloApiClientBackend.Brokers.Trello.Responses;
 using TrelloApiClientBackend.Brokers.Trello.Routes;
+using TrelloApiClientBackend.Contracts.Responses;
 
 namespace TrelloApiClientBackend.Controllers
 {
@@ -17,7 +18,7 @@ namespace TrelloApiClientBackend.Controllers
         }
 
         [HttpGet("{boardId}")]
-        public async Task<ActionResult<Result<TrelloBoardResponseExternal>>> GetBoard(string boardId)
+        public async Task<ActionResult<Result<BoardResponseDto>>> GetBoard(string boardId)
         {
             var getBoard =
                 await _trelloApiBroker.Get<TrelloBoardResponseExternal>(TrelloApiRoutes.Boards.Board(boardId));
