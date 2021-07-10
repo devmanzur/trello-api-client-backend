@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using AutoMapper;
 using CSharpFunctionalExtensions;
 using Microsoft.AspNetCore.Mvc;
 using TrelloApiClientBackend.Brokers.Trello;
@@ -11,10 +12,12 @@ namespace TrelloApiClientBackend.Controllers
     public class BoardsController : ApplicationBaseController
     {
         private readonly ITrelloApiBroker _trelloApiBroker;
+        private readonly IMapper _mapper;
 
-        public BoardsController(ITrelloApiBroker trelloApiBroker)
+        public BoardsController(ITrelloApiBroker trelloApiBroker,IMapper mapper)
         {
             _trelloApiBroker = trelloApiBroker;
+            _mapper = mapper;
         }
 
         [HttpGet("{boardId}")]
@@ -24,7 +27,7 @@ namespace TrelloApiClientBackend.Controllers
                 await _trelloApiBroker.Get<TrelloBoardResponseExternal>(TrelloApiRoutes.Boards.Board(boardId));
             if (getBoard.IsSuccess)
             {
-                return Ok(getBoard.Value);
+                return Ok(_mapper.Map<BoardResponseDto>(getBoard.Value));
             }
 
             return BadRequest(getBoard.Error);

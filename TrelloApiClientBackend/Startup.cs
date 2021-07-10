@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,7 +35,7 @@ namespace TrelloApiClientBackend
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "TrelloApiClientBackend", Version = "v1"});
             });
-
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddHttpClient<ITrelloApiBroker, TrelloRestapiClient>(client =>
             {
                 client.BaseAddress = new Uri(Configuration.GetValue<string>("Trello:BaseAddress"));
